@@ -2,7 +2,12 @@ namespace SocialNetwork;
 
 public class Output
 {
-    public void PrintLn(string expectedResult)
+    public virtual void PrintLn(string expectedResult)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public virtual void SendCommand(string postingStr)
     {
         throw new NotImplementedException();
     }
