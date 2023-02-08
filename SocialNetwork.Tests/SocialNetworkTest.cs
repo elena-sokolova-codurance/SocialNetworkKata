@@ -9,7 +9,8 @@ public class SocialNetworkTest
     {
         var console = new Mock<Output>();
         var parser = new Parser();
-        var twitter = new Twitter(console.Object, parser);
+        var repository = new Repository();
+        var twitter = new Twitter(console.Object, parser, repository);
         
         
         //Given: Alice as sent "I love the weather today"

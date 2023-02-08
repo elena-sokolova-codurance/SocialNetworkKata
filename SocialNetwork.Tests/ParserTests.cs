@@ -5,7 +5,7 @@ namespace SocialNetwork.Tests;
 public class ParserTests
 {
     [Fact]
-    public void ShouldParseCommandStr()
+    public void ShouldParsePostCommandStr()
     {
         var parser = new Parser();
         var userName = "Alice";
@@ -14,6 +14,7 @@ public class ParserTests
         var expectedCommand = new Command(userName, CommandType.Post, message);
         
         var parsedCommand = parser.ParseCommand(commandStr);
+        
         Assert.Equal(expectedCommand, parsedCommand);
 
 
