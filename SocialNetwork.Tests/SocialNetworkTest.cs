@@ -8,18 +8,17 @@ public class SocialNetworkTest
     public void ShouldPostMessage()
     {
         var console = new Mock<Output>();
+        var twitter = new Twitter(console.Object);
         
-        //Given: Alice
-        
-        // When she send "I love the weather today"
+        //Given: Alice as sent "I love the weather today"
         var postingStr = "Alice -> I love the weather today";
-        console.Object.SendCommand(postingStr);
-        // And Bob ask for Alice's message
-
-        var readingStr = "Alice";
-        console.Object.SendCommand(readingStr);
+        twitter.SendCommand(postingStr);
         
-        // Then Bob can read Alice message "I love the weather today"
+        //When Bob ask for Alice's message
+        var readingStr = "Alice";
+        twitter.SendCommand(readingStr);
+        
+        //Then Bob can read Alice message "I love the weather today"
         var expectedResult = "I love the weather today";
         console.Verify(v => v.PrintLn(expectedResult));
     }
