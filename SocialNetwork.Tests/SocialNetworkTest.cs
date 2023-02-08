@@ -21,6 +21,8 @@ public class SocialNetworkTest
         var readingStr = "Alice";
         twitter.SendCommand(readingStr);
         
+        
+        
         //Then Bob can read Alice message "I love the weather today"
         var expectedResult = "I love the weather today";
         console.Verify(v => v.PrintLn(expectedResult));

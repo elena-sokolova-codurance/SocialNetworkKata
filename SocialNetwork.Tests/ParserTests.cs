@@ -16,7 +16,17 @@ public class ParserTests
         var parsedCommand = parser.ParseCommand(commandStr);
         
         Assert.Equal(expectedCommand, parsedCommand);
+    }
 
+    [Fact]
+    public void ShouldParseReadCommand()
+    {
+        var parser = new Parser();
+        var userName = "Alice";
+        var expectedCommand = new Command(userName, CommandType.Read);
 
+        var parsedCommand = parser.ParseCommand(userName);
+        
+        Assert.Equal(expectedCommand, parsedCommand);
     }
 }

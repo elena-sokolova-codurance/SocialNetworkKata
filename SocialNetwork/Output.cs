@@ -4,6 +4,7 @@ public class Output
 {
     public virtual void PrintLn(string expectedResult)
     {
+        
         throw new NotImplementedException();
     }
     

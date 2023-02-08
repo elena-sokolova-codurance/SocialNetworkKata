@@ -21,7 +21,12 @@ public class Twitter
         if(parsedCommand.CommandType == CommandType.Post)
             _repository.SaveMessage(parsedCommand.UserName, parsedCommand.Message);
 
-        _repository.ReadMessagesFromUser(parsedCommand.UserName);
+        if (parsedCommand.CommandType == CommandType.Read)
+        {
+            var messages = _repository.ReadMessagesFromUser(parsedCommand.UserName);
+            if(messages.Count > 0)
+                _consoleObject.PrintLn(messages[0]);
+        }
 
     }
 }

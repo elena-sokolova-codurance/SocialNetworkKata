@@ -57,15 +57,28 @@ public class TwitterTests
         var parsedCommand = new Command(userName, CommandType.Read);
         
         _parser.Setup(x => x.ParseCommand(userName)).Returns(parsedCommand);
-        _repository.Setup(x => x.ReadMessagesFromUser(userName));
+        _repository.Setup(x => x.ReadMessagesFromUser(userName)).Returns(new List<string>());
         
         _twitter.SendCommand(userName);
         
         _repository.Verify(v => v.ReadMessagesFromUser(userName));
+    }
 
+    [Fact]
+    public void ShouldReadMessages()
+    {
+        var userName = "Alice";
+        var message = "I love the weather today";
+        var messagesList = new List<string>();
+        messagesList.Add(message);
+
+        _parser.Setup(x => x.ParseCommand(userName)).Returns(new Command(userName, CommandType.Read));
+        _repository.Setup(x => x.ReadMessagesFromUser(userName)).Returns(messagesList);
+        _console.Setup(x => x.PrintLn(message));
+        
+        _twitter.SendCommand(userName);
         
         
-        
-   
+        _console.Verify(v => v.PrintLn(message));
     }
 }
