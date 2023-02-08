@@ -2,13 +2,18 @@ namespace SocialNetwork;
 
 public class Twitter
 {
-    public Twitter(Output consoleObject)
+    private readonly Output _consoleObject;
+    private readonly Parser _parser;
+
+
+    public Twitter(Output consoleObject, Parser parser)
     {
-        throw new NotImplementedException();
+        _consoleObject = consoleObject;
+        _parser = parser;
     }
 
     public void SendCommand(string postingStr)
     {
-        throw new NotImplementedException();
+        var userName = _parser.ParseCommand(postingStr);
     }
 }

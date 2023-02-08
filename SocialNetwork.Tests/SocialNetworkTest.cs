@@ -8,7 +8,9 @@ public class SocialNetworkTest
     public void ShouldPostMessage()
     {
         var console = new Mock<Output>();
-        var twitter = new Twitter(console.Object);
+        var parser = new Parser();
+        var twitter = new Twitter(console.Object, parser);
+        
         
         //Given: Alice as sent "I love the weather today"
         var postingStr = "Alice -> I love the weather today";
