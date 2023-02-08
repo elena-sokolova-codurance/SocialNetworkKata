@@ -10,9 +10,13 @@ public class TwitterTests
         var console = new Mock<Output>();
         var parser = new Mock<Parser>();
         var twitter = new Twitter(console.Object, parser.Object);
-        var command = "I love the weather today";
-        var parsedCommand = new Command();
 
+        var userName = "Alice";
+        var message = "I love the weather today";
+        var command = $"{userName} -> {message}";
+        var parsedCommand = new Command(userName, CommandType.Post, message);
+
+        
         parser.Setup(x => x.ParseCommand(command)).Returns(parsedCommand);
         twitter.SendCommand(command);
         

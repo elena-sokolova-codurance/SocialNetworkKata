@@ -14,6 +14,6 @@ public class Twitter
 
     public void SendCommand(string postingStr)
     {
-        var userName = _parser.ParseCommand(postingStr);
+        var parsedCommand = _parser.ParseCommand(postingStr);
     }
 }
