@@ -17,6 +17,11 @@ public class Twitter
     public void SendCommand(string postingStr)
     {
         var parsedCommand = _parser.ParseCommand(postingStr);
-        _repository.SaveMessage(parsedCommand.UserName, parsedCommand.Message);
+        
+        if(parsedCommand.CommandType == CommandType.Post)
+            _repository.SaveMessage(parsedCommand.UserName, parsedCommand.Message);
+
+        _repository.ReadMessagesFromUser(parsedCommand.UserName);
+
     }
 }

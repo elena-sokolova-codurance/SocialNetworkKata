@@ -35,7 +35,7 @@ public class TwitterTests
     }
 
     [Fact]
-    public void ShouldVerifyCommand()
+    public void ShouldSavePostCommand()
     {
         var userName = "Alice";
         var message = "I love the weather today";
@@ -48,5 +48,24 @@ public class TwitterTests
         _twitter.SendCommand(command);
 
         _repository.Verify(v => v.SaveMessage(userName, message));
+    }
+
+    [Fact]
+    public void ShouldReadMessagesFromAlice()
+    {
+        var userName = "Alice";
+        var parsedCommand = new Command(userName, CommandType.Read);
+        
+        _parser.Setup(x => x.ParseCommand(userName)).Returns(parsedCommand);
+        _repository.Setup(x => x.ReadMessagesFromUser(userName));
+        
+        _twitter.SendCommand(userName);
+        
+        _repository.Verify(v => v.ReadMessagesFromUser(userName));
+
+        
+        
+        
+   
     }
 }

@@ -6,16 +6,17 @@ public class Repository
 
     public virtual void SaveMessage(string userName, string message)
     {
-        var currentMessages = _storage[userName];
-        if (currentMessages == null)
+        var currentMessages = new List<string>();
+        if (_storage.ContainsKey(userName))
         {
-            currentMessages = new List<string>();
+            currentMessages = _storage[userName];
+
         }
         currentMessages.Add(message);
         _storage[userName] = currentMessages;
     }
 
-    public List<string> ReadMessagesFromUser(string userName)
+    public virtual List<string> ReadMessagesFromUser(string userName)
     {
         return _storage[userName];
     }
